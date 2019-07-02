@@ -1,0 +1,6 @@
+Mooc FullStack 2019
+Loviisa Hurme
+
+tehtävä 0.6
+
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa

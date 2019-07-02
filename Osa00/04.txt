@@ -1,0 +1,22 @@
+Mooc FullStack 2019
+Loviisa Hurme
+
+tehtävä 0.4
+
+note over selain:
+Muistiinpanon lähettäminen palvelimelle
+end note over
+
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+note over palvelin:
+sivun uudelleen lataus
+end note over
+palvelin-->selain: HTML-koodi
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin-->selain: main.js
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: [{ content: "HTML is easy", date: "2019-05-23T17:30:31.098Z"}, ...]
