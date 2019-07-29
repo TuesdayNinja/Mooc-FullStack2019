@@ -1,5 +1,31 @@
+/*
+Mooc Fullstack 2019
+Loviisa Hurme
+Tehtävä unicafe
+*/
+
+
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+
+
+const CalculateAverage = ({good, neutral, bad}) => {
+  return (
+    <p>
+    Average rating is {(good * 1 + neutral * 0 + bad * -1) / (good + neutral + bad)}
+    </p>
+    )
+}
+
+
+const CalculatePositivePercent = ({good, neutral, bad}) => {
+  return (
+    <p>
+    Percent for positive feedback is {good/(good+neutral+bad)} %
+    </p>
+    )
+}
+
 
 const App = () => {
   // tallenna napit omaan tilaansa
@@ -32,10 +58,14 @@ const App = () => {
       <p>Good {good}</p>
       <p>Neutral {neutral}</p>
       <p>Bad {bad}</p>
+      <p>Feedbacks given {good + neutral + bad}</p>
+      <CalculateAverage good = {good} neutral = {neutral} bad = {bad}/>
+      <CalculatePositivePercent good = {good} neutral = {neutral} bad = {bad}/>
+
     </div>
   )
 }
 
-ReactDOM.render(<App />, 
+ReactDOM.render(<App />,
   document.getElementById('root')
 )
