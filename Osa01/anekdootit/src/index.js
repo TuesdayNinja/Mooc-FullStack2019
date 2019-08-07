@@ -5,19 +5,29 @@ import ReactDOM from 'react-dom'
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [points, setPoints] = useState(anecdotes.map(() => 0))
 
-  const handleClick = () => (
+  const handleAnecdoteClick = () => (
 	  	setSelected(Math.floor(Math.random() * 6))
   )
+
+  const handlePointClick = () => {
+  		const copy = [...points]
+  		copy[selected] += 1
+  		setPoints(copy)
+  }
 
 
   return (
     <div>
-    	<button onClick={handleClick}>Press me!</button>
+    	<button onClick={handleAnecdoteClick}>Press me!</button>
+    	<button onClick={handlePointClick}>Give me vote!</button>
     	<p> {props.anecdotes[selected]} </p>
+    	<p> has {points[selected]} votes</p>
     </div>
   )
 }
+
 
 const anecdotes = [
   'If it hurts, do it more often',
