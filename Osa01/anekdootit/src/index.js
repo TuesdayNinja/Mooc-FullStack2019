@@ -1,6 +1,35 @@
+/*
+Mooc Fullstack 2019
+Loviisa Hurme
+Tehtävä anekdootit
+*/
+
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+
+const MostVoted = ({points, anecdotes}) => {
+	let max = 0
+	let maxIndex = 0
+
+	for (let i = 0; i < points.length; i++){
+		if (points[i] > max){
+			max = points[i]
+			maxIndex = i
+		}
+	}
+
+	return(
+		<div>
+			<p>
+			{anecdotes[maxIndex]}
+			</p>
+			<p>
+			has {max} votes
+			</p>
+		</div>
+	)
+}
 
 
 const App = (props) => {
@@ -20,10 +49,13 @@ const App = (props) => {
 
   return (
     <div>
-    	<button onClick={handleAnecdoteClick}>Press me!</button>
-    	<button onClick={handlePointClick}>Give me vote!</button>
+    	<h2>Anecdotes</h2>
     	<p> {props.anecdotes[selected]} </p>
     	<p> has {points[selected]} votes</p>
+    	<button onClick={handlePointClick}>Give me vote!</button>
+    	<button onClick={handleAnecdoteClick}>Next anecdote!</button>
+    	<h2>Most voted</h2>
+    	<MostVoted points={points} anecdotes={anecdotes}/>
     </div>
   )
 }
