@@ -9,26 +9,17 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 
-const CalculateAverage = ({good, neutral, bad}) => {
+const Statistic = ({text, value}) => {
   return (
     <p>
-    Average rating is {(good * 1 + neutral * 0 + bad * -1) / (good + neutral + bad)}
+    {text} {value}
     </p>
     )
 }
-
-
-const CalculatePositivePercent = ({good, neutral, bad}) => {
-  return (
-    <p>
-    Percent for positive feedback is {good/(good+neutral+bad)} %
-    </p>
-    )
-}
-
 
 const Statistics = ({good, neutral, bad}) => {
-  if (good + neutral + bad === 0) {
+  let total = good + neutral + bad;
+  if (total === 0) {
     return(
       <p>
       No feedback given.
@@ -38,20 +29,26 @@ const Statistics = ({good, neutral, bad}) => {
 
   return(
     <div>
-      <p>
-      Statistics
-      </p>
-      <p>Good {good}</p>
-      <p>Neutral {neutral}</p>
-      <p>Bad {bad}</p>
-      <p>Feedbacks given {good + neutral + bad}</p>
-      <CalculateAverage good = {good} neutral = {neutral} bad = {bad}/>
-      <CalculatePositivePercent good = {good} neutral = {neutral} bad = {bad}/>
+      <Statistic text="Good" value={good}/>
+      <Statistic text="Neutral" value={neutral}/>
+      <Statistic text="Bad" value={bad}/>
+      <Statistic text="Feedbacks given " value={total}/>
+      <Statistic text="Average rating is" value={(good - bad) / total}/>
+      <Statistic text="Percent for positive feedback is" value={good/total}/>
     </div>
 
     )
 
 }
+
+
+const Button = ({ handleClick, text }) => {
+    return(
+        <button onClick={handleClick}>
+          {text}
+        </button>
+        )
+  }
 
 
 const App = () => {
@@ -78,9 +75,9 @@ const App = () => {
     <div>
       <h1>UNICAFE</h1>
       <h3>Give feedback</h3>
-      <button onClick={handleGoodClick}>Good</button>
-      <button onClick={handleNeutralClick}>Neutral</button>
-      <button onClick={handleBadClick}>Bad</button>
+      <Button handleClick={handleGoodClick} text="Good"></Button>
+      <Button handleClick={handleNeutralClick} text="Neutral"></Button>
+      <Button handleClick={handleBadClick} text="Bad"></Button>
       <h3>Statistics</h3>
       <Statistics good = {good} neutral = {neutral} bad = {bad}/>
     </div>
