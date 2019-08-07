@@ -11,9 +11,10 @@ import ReactDOM from 'react-dom'
 
 const Statistic = ({text, value}) => {
   return (
-    <p>
-    {text} {value}
-    </p>
+        <tr>
+          <td>{text}</td>
+          <td>{value}</td>
+        </tr>
     )
 }
 
@@ -29,12 +30,16 @@ const Statistics = ({good, neutral, bad}) => {
 
   return(
     <div>
-      <Statistic text="Good" value={good}/>
-      <Statistic text="Neutral" value={neutral}/>
-      <Statistic text="Bad" value={bad}/>
-      <Statistic text="Feedbacks given " value={total}/>
-      <Statistic text="Average rating is" value={(good - bad) / total}/>
-      <Statistic text="Percent for positive feedback is" value={good/total}/>
+      <table>
+        <tbody>
+          <Statistic text="Good" value={good}/>
+          <Statistic text="Neutral" value={neutral}/>
+          <Statistic text="Bad" value={bad}/>
+          <Statistic text="Feedbacks given " value={total}/>
+          <Statistic text="Average rating" value={(good - bad) / total}/>
+          <Statistic text="Percent for positive feedback" value={good/total + '%'}/>
+        </tbody>
+      </table>
     </div>
 
     )
