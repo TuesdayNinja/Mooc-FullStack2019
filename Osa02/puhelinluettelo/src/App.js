@@ -91,17 +91,16 @@ const App = () => {
           number: newNumber
          }
 
-     if(nameExist(event)){
+     if(nameExist()){
         update(nameObject)
-        handleNotification(`${newName}'s number changed`)
       }
       else{
          personService
           .create(nameObject)
           .then(returnedPerson => {
             setPersons(persons.concat(returnedPerson))
+            handleNotification(`${newName} added to phonebook`)
           })
-          handleNotification(`${newName} added to phonebook`)
 
       }
 
@@ -117,7 +116,7 @@ const App = () => {
       setNewNumber(event.target.value)
   }
 
-  const nameExist = (event) => {
+  const nameExist = () => {
     return(
     persons.some(person => person.name === newName)
     )
@@ -140,8 +139,8 @@ const App = () => {
             .deletePerson(personId)
             .then(deleted => {
               setPersons(persons.filter(person => person.id !== personId))
+              handleNotification(`${person.name} deleted from phonebook.`)
             })
-            handleNotification(`${person.name} deleted from phonebook.`)
     }
   }
 
@@ -154,6 +153,7 @@ const App = () => {
         .update(id, nameObject)
         .then(returnedPerson => {
           setPersons(persons.map(person => person.id !== id ? person : returnedPerson))
+          handleNotification(`${newName}'s number changed`)
         })
         .catch(error => {
           handleError(`${newName} was already removed from server`)
